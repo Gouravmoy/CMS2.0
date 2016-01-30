@@ -7,7 +7,8 @@ angular.module('myApp', [
         'myApp.filters',
         'myApp.services',
         'myApp.directives',
-        'myApp.controllers'
+        'myApp.controllers',
+        'ngCookies'
     ])
     /*.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
      $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
@@ -18,8 +19,8 @@ angular.module('myApp', [
      */
     .config(['$routeProvider', '$locationProvider',
         function ($routeProvider, $locationProvider) {
-
             $routeProvider.when('/admin/login', {
+
                 templateUrl: 'partials/admin/login.html',
                 controller: 'AdminLoginCtrl'
             });

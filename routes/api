@@ -111,7 +111,7 @@ router.post('/login', function (request, response) {
     var sess;
 
     sess = request.session;
-
+    console.log('Login API')
     adminUser.findOne({
         userName: username
     }, function (err, data) {
@@ -121,6 +121,7 @@ router.post('/login', function (request, response) {
             var user = data;
             if (user.userName == username && bcrypt.compareSync(password, user.password)) {
                 request.session.regenerate(function (err) {
+                    console.log(username)
                     request.session.user = username;
                     return response.send(username);
                 });
