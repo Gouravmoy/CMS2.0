@@ -8,7 +8,9 @@ angular.module('myApp', [
         'myApp.services',
         'myApp.directives',
         'myApp.controllers',
-        'ngCookies'
+        /*'ui.tinymce',*/
+        'ngCookies',
+        'message.flash'
     ])
     /*.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
      $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});

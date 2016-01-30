@@ -10,6 +10,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/pages', function (request, response) {
+    console.log('All Pages API');
     return Pages.find(function (err, pages) {
         if (!err) {
             return response.send(pages);
@@ -68,8 +69,12 @@ router.get('/pages/admin-details/:id', sessionCheck, function (request, response
     Pages.findOne({
         _id: id
     }, function (err, page) {
-        if (err)
+        if (err) {
+            console.log(err);
             return console.log(err);
+
+        }
+
         return response.send(page);
     });
 });
@@ -111,7 +116,7 @@ router.post('/login', function (request, response) {
     var sess;
 
     sess = request.session;
-    console.log('Login API')
+    console.log('Login API');
     adminUser.findOne({
         userName: username
     }, function (err, data) {

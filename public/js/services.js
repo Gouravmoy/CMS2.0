@@ -13,10 +13,10 @@ angular.module('myApp.services', []).
             },
             savePages: function (pageData) {
                 var id = pageData._id;
-                if (id === 0) {
+                if (id === '0') {
                     return $http.post('/api/pages/add', pageData);
                 } else {
-                    return $http.get('/api/pages/update', pageData);
+                    return $http.post('/api/pages/update', pageData);
                 }
 
             }, deletePage: function (id) {
