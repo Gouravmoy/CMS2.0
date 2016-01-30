@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 });
 
 router.get('/pages', function (request, response) {
-    return pages.find(function (err, pages) {
+    return Pages.find(function (err, pages) {
         if (!err) {
             return response.send(pages);
         } else {
