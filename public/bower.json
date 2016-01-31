@@ -11,7 +11,9 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
-    "angular-ui-tinymce": "^0.0.12"
+    "angular-ui-tinymce": "^0.0.12",
+    "angular-cookies": "^1.4.9",
+    "bootstrap": "^3.3.6"
   },
   "resolutions": {
     "angular": "1.4.9"
