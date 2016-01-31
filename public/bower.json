@@ -10,7 +10,8 @@
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
-    "html5-boilerplate": "~4.3.0"
+    "html5-boilerplate": "~4.3.0",
+    "angular-ui-tinymce": "^0.0.12"
   },
   "resolutions": {
     "angular": "1.4.9"

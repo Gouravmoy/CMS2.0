@@ -10,12 +10,33 @@
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 
-<body>
-<div message-flash></div>
-<div class="container" ng-view></div>
+<body ng-controller="AppCtrl">
+
+<div class="col-md-3 pull-right" admin-login></div>
+<div class="container">
+
+    <div admin-login>Hello</div>
+
+    <header>
+        <center><img ng-src="{{site.logo}}"></center>
+    </header>
+    <div message-flash></div>
+    <div class="row">
+        <div class="col-md-3" nav-bar></div>
+        <div class="col-md-6" ng-view></div>
+    </div>
+    <center>
+        <footer>{{site.footer}}</footer>
+    </center>
+</div>
+
+<!--<div message-flash></div>-->
+<!--<div class="container" ng-view></div>-->
+<script type="text/javascript" src="bower_components/tinymce-dist/tinymce.min.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <!--//Took a lot of time. Load the below line after the above line-->
 <script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="js/app.js"></script>
 <script src="js/services.js"></script>

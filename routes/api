@@ -21,6 +21,7 @@ router.get('/pages', function (request, response) {
 });
 
 router.post('/pages/add', sessionCheck, function (request, response) {
+    console.log('Add Pages API');
     var page = new Pages({
         title: request.body.title,
         url: request.body.url,
@@ -38,8 +39,8 @@ router.post('/pages/add', sessionCheck, function (request, response) {
 });
 
 router.post('/pages/update', sessionCheck, function (request, response) {
-    var id = request.body.id;
-
+    var id = request.body._id;
+    console.log('Update API');
     Pages.update({
         _id: id
     }, {
@@ -80,6 +81,7 @@ router.get('/pages/admin-details/:id', sessionCheck, function (request, response
 });
 
 router.get('/pages/details/:url', function (request, response) {
+    console.log('Details API');
     var url = request.params.url;
     Pages.findOne({
         url: url

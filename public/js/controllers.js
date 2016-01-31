@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-    controller('AdminPagesCtrl', ['$scope', '$log', 'pagesFactory',
-        function ($scope, $log, pagesFactory) {
+    controller('AdminPagesCtrl', ['$scope', '$log', 'pagesFactory', '$location', 'flashMessageService', '$route',
+        function ($scope, $log, pagesFactory, $location, flashMessageService, $route) {
             pagesFactory.getPages().then(
                 function (response) {
                     $scope.allPages = response.data;
@@ -15,6 +15,9 @@ angular.module('myApp.controllers', []).
 
             $scope.deletePage = function (id) {
                 pagesFactory.deletePage(id);
+                flashMessageService.setMessage('Page Deleted');
+                $location.path('/admin/pages');
+                $route.reload();
             };
         }
     ])
@@ -72,4 +75,36 @@ angular.module('myApp.controllers', []).
                 );
             };
         }
-    ]);
+    ])
+    .controller('AppCtrl', ['$scope', 'AuthService', 'flashMessageService', '$location', function ($scope, AuthService, flashMessageService, $location) {
+        $scope.site = {
+            logo: "img/logo.png",
+            footer: "Gouravmoy Mohanty 2016 Angular CMS"
+        };
+        $scope.logout = function () {
+            AuthService.logout().then(
+                function () {
+
+                    $location.path('/admin/login');
+                    flashMessageService.setMessage("Successfully logged out");
+
+                }, function (err) {
+                    console.log('there was an error tying to logout');
+                });
+        };
+    }
+    ])
+    .controller('PageCtrl', ['$scope', 'pagesFactory', '$routeParams', '$sce', function ($scope, pagesFactory, $routeParams, $sce) {
+        var url = $routeParams.url;
+        if(!url) url="home";
+        pagesFactory.getPageContent(url).then(
+            function (response) {
+                $scope.pageContent = {};
+                $scope.pageContent.title = response.data.title;
+                $scope.pageContent.content = $sce.trustAsHtml(response.data.content);
+
+            }, function () {
+                console.log('error fetching data');
+            });
+    }]);
+

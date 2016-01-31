@@ -13,9 +13,10 @@ angular.module('myApp.services', []).
             },
             savePages: function (pageData) {
                 var id = pageData._id;
-                if (id === '0') {
+                if (id === 'new') {
                     return $http.post('/api/pages/add', pageData);
                 } else {
+                    //return $http.post('/api/pages/add', pageData);
                     return $http.post('/api/pages/update', pageData);
                 }
 
@@ -44,3 +45,17 @@ angular.module('myApp.services', []).
         }
             ;
     }])
+    .factory('myHttpInterceptor', ['$q', '$location', function ($q, $location) {
+        return {
+            response: function (response) {
+                return response;
+            },
+            responseError: function (response) {
+                if (response.status === 401) {
+                    $location.path('/admin/login');
+                    return $q.reject(response);
+                }
+                return $q.reject(response);
+            }
+        };
+    }]);

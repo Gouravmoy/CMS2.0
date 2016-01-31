@@ -8,7 +8,7 @@ angular.module('myApp', [
         'myApp.services',
         'myApp.directives',
         'myApp.controllers',
-        /*'ui.tinymce',*/
+        'ui.tinymce',
         'ngCookies',
         'message.flash'
     ])
@@ -35,8 +35,15 @@ angular.module('myApp', [
                 controller: 'AddEditPageCtrl'
             });
             $routeProvider.otherwise({
-                redirectTo: '/'
+                redirectTo: '/home'
+            });
+            $routeProvider.when('/:url', {
+                templateUrl: 'partials/page.html',
+                controller: 'PageCtrl'
             });
             $locationProvider.html5Mode(true);
         }
-    ]);
+    ])
+    .config(function ($httpProvider) {
+        $httpProvider.interceptors.push('myHttpInterceptor');
+    });
