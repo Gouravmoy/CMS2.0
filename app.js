@@ -12,7 +12,7 @@ var routes = require('./routes/index');
 var app = express();
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/angcms');
+mongoose.connect('mongodb://admin:admin@ds049854.mongolab.com:49854/angcms');
 var db = mongoose.connection;
 
 var api = require('./routes/api')
